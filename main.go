@@ -19,7 +19,6 @@ func main() {
 		if err := json.Unmarshal(body, &jsonBody); err != nil {
 			jsonBody = map[string]any{"raw": string(body)}
 		}
-		hostname, _ := os.Hostname()
 
 		response := gin.H{
 			"client":          c.ClientIP(),
@@ -32,13 +31,12 @@ func main() {
 			"uri":             c.Request.RequestURI,
 			"header":          c.Request.Header,
 			"body":            jsonBody,
-			"hostname":        hostname,
 			"env": map[string]string{
 				"POD_NAME":         os.Getenv("POD_NAME"),
 				"NODE_NAME":        os.Getenv("NODE_NAME"),
 				"DOCKER_CONTAINER": os.Getenv("HOSTNAME"),
 			},
-			"backend_latency_ns": time.Since(startTime).Microseconds(),
+			"backend_latency_us": time.Since(startTime).Microseconds(),
 		}
 
 		c.JSON(200, response)
