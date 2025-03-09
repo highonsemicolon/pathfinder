@@ -10,8 +10,4 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o main .
 FROM gcr.io/distroless/static:nonroot
 WORKDIR /app
 COPY --from=builder /app/main .
-
-ENV GIN_MODE=release
-ENV PORT=8080
-EXPOSE 8080
 CMD ["/app/main"]
