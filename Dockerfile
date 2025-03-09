@@ -7,11 +7,11 @@ RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o main .
 
-FROM alpine:latest
+FROM gcr.io/distroless/static:nonroot
 WORKDIR /app
 COPY --from=builder /app/main .
 
 ENV GIN_MODE=release
-ENV PORT=80
-EXPOSE 80
+ENV PORT=8080
+EXPOSE 8080
 CMD ["/app/main"]
