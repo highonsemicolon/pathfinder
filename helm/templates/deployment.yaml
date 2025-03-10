@@ -44,11 +44,14 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          {{- with .Values.env }}
-          env:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-           {{- with .Values.livenessProbe }}
+          envFrom:
+            - configMapRef:
+                name: pathfinder-config
+                optional: true
+            - secretRef:
+                name: pathfinder-secret
+                optional: true
+          {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
           {{- end }}
