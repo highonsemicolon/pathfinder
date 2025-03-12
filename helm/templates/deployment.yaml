@@ -46,10 +46,10 @@ spec:
               protocol: TCP
           envFrom:
             - configMapRef:
-                name: pathfinder-config
+                name: {{ include "pathfinder.fullname" . }}
                 optional: true
             - secretRef:
-                name: pathfinder-secret
+                name: {{ include "pathfinder.fullname" . }}
                 optional: true
           {{- with .Values.livenessProbe }}
           livenessProbe:
