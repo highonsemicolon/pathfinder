@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: pathfinder-config
+  name: {{ include "pathfinder.fullname" . }}
 data:
   {{- with .Values.configs }}
   {{. | toYaml | nindent 2 }}
