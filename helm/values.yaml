@@ -74,6 +74,7 @@ ingress:
     # {}
     # nginx.ingress.kubernetes.io/rewrite-target: /
     # kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/auth-secret: "{{ .Release.Namespace }}/my-secret"
   hosts:
     - host:
       paths:
