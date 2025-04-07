@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: {{ include "pathfinder.fullname" . }}
 data:
-  {{- with .Values.configs }}
-  {{. | toYaml | nindent 2 }}
-  {{ end }}
+  {{- with .Values.env.configMap }}
+    {{- range $key, $val := . }}
+      {{ $key }}: {{ $val | quote }}
+    {{- end }}
+  {{- end }}
