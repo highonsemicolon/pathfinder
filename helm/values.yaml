@@ -91,11 +91,19 @@ ingress:
 istio:
   enabled: false
   gateway:
+    annotations: {}
     selector:
       istio: ingressgateway
     hosts:
-      - "*"
-    port: 80
+      - host: "*"
+        paths:
+          - path: /
+            pathType: Prefix
+    port: 8080
+  tls: []
+  # - secretName: chart-example-tls
+  #   hosts:
+  #     - chart-example.local
 
 resources:
   {}
