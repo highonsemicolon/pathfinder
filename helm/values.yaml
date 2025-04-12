@@ -99,7 +99,7 @@ istio:
         paths:
           - path: /
             pathType: Prefix
-    port: 8080
+    port: 80
   tls: []
   # - secretName: chart-example-tls
   #   hosts:

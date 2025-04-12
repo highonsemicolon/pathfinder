@@ -22,7 +22,7 @@ spec:
       - destination:
           host: {{ include "pathfinder.fullname" $ }}
           port:
-            number: {{ $.Values.istio.gateway.port }}
+            number: {{ $.Values.service.port }}
   {{- end }}
   {{- end }}
 {{ end}}
