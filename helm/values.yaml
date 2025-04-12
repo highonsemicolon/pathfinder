@@ -93,7 +93,7 @@ istio:
   gateway:
     annotations: {}
     selector:
-      istio: ingressgateway
+      istio: ingress
     hosts:
       - host: "*"
         paths:
