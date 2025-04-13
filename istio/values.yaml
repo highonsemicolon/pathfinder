@@ -14,15 +14,15 @@ gateway:
         protocol: HTTP
       hosts:
         - "*"
-    - port:
-        number: 443
-        name: https
-        protocol: HTTPS
-      hosts:
-        - "*"
-      tls:
-        mode: MUTUAL # SIMPLE or MUTUAL
-        credentialName: tls-secret # name of secret that contains the certificate
+    # - port:
+    #     number: 443
+    #     name: https
+    #     protocol: HTTPS
+    #   hosts:
+    #     - "*"
+    #   tls:
+    #     mode: MUTUAL # SIMPLE or MUTUAL
+    #     credentialName: tls-secret # name of secret that contains the certificate
 virtualService:
   hosts:
     - "*"
