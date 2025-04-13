@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ include "pathfinder.fullname" . }}
+  labels:
+    {{- include "pathfinder.labels" . | nindent 4 }}
+spec:
+  hosts:
+    {{- toYaml .Values.virtualService.hosts | nindent 4 }}
+  gateways:
+    - {{ include "pathfinder.fullname" . }}
+  
+  {{- toYaml .Values.virtualService.protocols | nindent 2 }}

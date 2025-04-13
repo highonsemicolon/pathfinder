@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: {{ include "pathfinder.fullname" . }}
+  labels:
+    {{- include "pathfinder.labels" . | nindent 4 }}
+spec:
+  selector:
+    {{- range $key, $value := .Values.gateway.selector }}
+    {{ $key }}: {{ $value }}
+    {{- end }}
+  servers:
+    {{- toYaml .Values.gateway.servers | nindent 4 }}

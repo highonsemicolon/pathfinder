@@ -1,0 +1,38 @@
+# This is to override the chart name.
+nameOverride: "koko"
+fullnameOverride: "haha"
+
+# Gateway configuration for Istio
+gateway:
+  namespace: istio-system
+  selector:
+    istio: ingress
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - "*"
+      tls:
+        mode: MUTUAL # SIMPLE or MUTUAL
+        credentialName: tls-secret # name of secret that contains the certificate
+virtualService:
+  hosts:
+    - "*"
+  protocols:
+    http:
+      - match:
+          - uri:
+              prefix: /
+        route:
+          - destination:
+              host: my-service
+              port:
+                number: 80

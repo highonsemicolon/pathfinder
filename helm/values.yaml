@@ -87,24 +87,6 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-# This block is for setting up the istio ingress gateway more information can be found here: https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-control/
-istio:
-  enabled: false
-  gateway:
-    port: 80
-    annotations: {}
-    selector:
-      istio: ingress
-    hosts:
-      - host: "*"
-        paths:
-          - path: /
-            pathType: Prefix
-  tls: []
-  # - secretName: chart-example-tls
-  #   hosts:
-  #     - chart-example.local
-
 resources:
   {}
   # We usually recommend not to specify default resources and to leave this as a conscious
