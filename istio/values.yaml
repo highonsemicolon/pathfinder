@@ -1,6 +1,6 @@
 # This is to override the chart name.
-nameOverride: "koko"
-fullnameOverride: "haha"
+nameOverride: ""
+fullnameOverride: ""
 
 # Gateway configuration for Istio
 gateway:
