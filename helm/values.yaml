@@ -91,6 +91,7 @@ ingress:
 istio:
   enabled: false
   gateway:
+    port: 80
     annotations: {}
     selector:
       istio: ingress
@@ -99,7 +100,6 @@ istio:
         paths:
           - path: /
             pathType: Prefix
-    port: 80
   tls: []
   # - secretName: chart-example-tls
   #   hosts:
