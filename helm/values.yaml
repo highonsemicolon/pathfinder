@@ -60,6 +60,9 @@ service:
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 8080
+  # This sets the annotations for the service more information can be found here: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  annotations: {}
+    # cloud.google.com/load-balancer-type: "Internal"
 
 env:
   secret:

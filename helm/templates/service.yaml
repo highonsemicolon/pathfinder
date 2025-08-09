@@ -5,6 +5,8 @@ metadata:
   name: {{ include "pathfinder.fullname" . }}
   labels:
     {{- include "pathfinder.labels" . | nindent 4 }}
+  annotations:
+    {{- toYaml .Values.service.annotations | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
