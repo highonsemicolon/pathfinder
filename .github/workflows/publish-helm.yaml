@@ -5,9 +5,9 @@ on:
     branches:
       - main
     paths:
-      - 'helm/**'
-      - '.github/workflows/publish-helm.yaml'
-      - 'README.md'
+      - "helm/**"
+      - ".github/workflows/publish-helm.yaml"
+      - "README.md"
 
 jobs:
   publish:
