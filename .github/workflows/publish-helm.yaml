@@ -7,6 +7,7 @@ on:
     paths:
       - 'helm/**'
       - '.github/workflows/publish-helm.yaml'
+      - 'README.md'
 
 jobs:
   publish:
@@ -32,9 +33,13 @@ jobs:
         run: |
           helm repo index .deploy --url https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
 
+      - name: Copy README to deploy directory
+        run: cp README.md .deploy/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .deploy
           publish_branch: gh-pages
+          enable_jekyll: true
