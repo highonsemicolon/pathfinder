@@ -13,7 +13,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx
 ```
 
 ```bash
-helm template pathfinder ./helm -s templates/deployment.yaml -f ./helm/values.yaml;
+helm template pathfinder ./helm -s templates/deployment.yaml -f ./helm/values.yaml
 ```
 
 
