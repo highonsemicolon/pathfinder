@@ -1,0 +1,15 @@
+meshConfig:
+  defaultConfig:
+    tracing:
+      sampling: 100.0
+      zipkin:
+        address: otel-collector.otel-system.svc.cluster.local:9411
+      #provider:
+      # name: otel
+  extensionProviders:
+  - name: otel
+    opentelemetry:
+      service: otel-collector.otel-system.svc.cluster.local
+      port: 4317
+      protocol: grpc
+
