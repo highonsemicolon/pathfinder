@@ -61,14 +61,13 @@ service:
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 8080
   # This sets the annotations for the service more information can be found here: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-  annotations: {}
+  annotations:
+    {}
     # cloud.google.com/load-balancer-type: "Internal"
 
 env:
   secret:
   configMap:
-    PORT: 8080
-    GIN_MODE: "release"
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
