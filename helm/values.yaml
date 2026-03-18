@@ -115,6 +115,11 @@ readinessProbe:
     path: /readyz
     port: http
 
+# This is to setup the pdb more information can be found here: https://kubernetes.io/docs/concepts/workloads/pods/pod-disruption-budget/
+pdb:
+  minAvailable: 1
+  # maxUnavailable: 1
+
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
   enabled: false
