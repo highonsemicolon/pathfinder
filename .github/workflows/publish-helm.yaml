@@ -9,6 +9,10 @@ on:
       - ".github/workflows/publish-helm.yaml"
       - "README.md"
 
+concurrency:
+  group: helm-publish
+  cancel-in-progress: false
+  
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -37,7 +41,7 @@ jobs:
           helm repo index .deploy \
             --url https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }} \
             --merge .deploy/index.yaml
-            
+
       - name: Copy README to deploy directory
         run: cp README.md .deploy/
 
