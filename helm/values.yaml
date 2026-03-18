@@ -117,7 +117,8 @@ readinessProbe:
 
 # This is to setup the pdb more information can be found here: https://kubernetes.io/docs/concepts/workloads/pods/pod-disruption-budget/
 pdb:
-  minAvailable: 1
+  enabled: true
+  minAvailable: 0
   # maxUnavailable: 1
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/

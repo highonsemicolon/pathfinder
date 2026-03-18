@@ -1,5 +1,11 @@
+{{- if .Values.pdb.enabled }}
 {{- if and (hasKey .Values.pdb "minAvailable") (hasKey .Values.pdb "maxUnavailable") }}
 {{- fail "pdb: minAvailable and maxUnavailable are mutually exclusive, use one or the other" }}
+{{- end }}
+{{- if and (eq (int .Values.replicaCount) 1) (hasKey .Values.pdb "minAvailable") }}
+{{- if eq (int .Values.pdb.minAvailable) 1 }}
+{{- fail "pdb: minAvailable: 1 with replicaCount: 1 will block node drains. Increase replicaCount or set maxUnavailable: 1 instead" }}
+{{- end }}
 {{- end }}
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -16,3 +22,4 @@ spec:
   selector:
     matchLabels:
       {{- include "pathfinder.selectorLabels" . | nindent 6 }}
+{{- end }}
