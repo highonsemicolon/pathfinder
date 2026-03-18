@@ -23,10 +23,12 @@ jobs:
         with:
           version: v3.14.0
 
+      - name: Lint chart
+        run: helm lint helm
+
       - name: Package Helm chart
         run: |
           mkdir -p .deploy
-          helm lint helm
           helm package helm --destination .deploy
 
       - name: Generate index.yaml
