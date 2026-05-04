@@ -75,13 +75,33 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.volumeMounts }}
           volumeMounts:
+          {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- with .Values.volumes }}
+          {{- if .Values.fileConfigMaps }}
+            - name: file-config
+              mountPath: {{ .Values.fileMountPath }}
+              readOnly: true
+          {{- end }}
+          {{- if .Values.fileSecrets }}
+            - name: file-secret
+              mountPath: {{ .Values.fileMountPath }}
+              readOnly: true
+          {{- end }}
       volumes:
+      {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.fileConfigMaps }}
+        - name: file-config
+          configMap:
+            name: {{ include "pathfinder.fullname" . }}-volume
+      {{- end }}
+      {{- if .Values.fileSecrets }}
+        - name: file-secret
+          secret:
+            secretName: {{ include "pathfinder.fullname" . }}-volume
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

@@ -1,0 +1,13 @@
+{{- if .Values.fileConfigMaps }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "pathfinder.fullname" . }}-volume
+  labels:
+    {{- include "pathfinder.labels" . | nindent 4 }}
+data:
+  {{- range $key := .Values.fileConfigMaps }}
+  {{ $key }}: |
+    {{- $.Files.Get (printf "files/%s" $key) | nindent 4 }}
+  {{- end }}
+{{- end }}

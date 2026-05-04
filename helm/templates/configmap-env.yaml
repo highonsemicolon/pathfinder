@@ -1,10 +1,14 @@
+{{- if .Values.env.configMap}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ include "pathfinder.fullname" . }}-env
+  labels:
+    {{- include "pathfinder.labels" . | nindent 4 }}
 data:
 {{- with .Values.env.configMap }}
 {{- range $key, $val := . }}
   {{ $key }}: {{ $val | quote }}
+{{- end }}
 {{- end }}
 {{- end }}
