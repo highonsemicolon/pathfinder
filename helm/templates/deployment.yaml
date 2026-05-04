@@ -80,14 +80,20 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- if .Values.fileConfigMaps }}
-            - name: file-config
-              mountPath: {{ .Values.fileMountPath }}
-              readOnly: true
+          {{- range $key, $path := .Values.fileConfigMaps }}
+          - name: file-config
+            mountPath: {{ $path }}
+            subPath: {{ $key }}
+            readOnly: true
+          {{- end }}
           {{- end }}
           {{- if .Values.fileSecrets }}
-            - name: file-secret
-              mountPath: {{ .Values.fileMountPath }}/secret
-              readOnly: true
+          {{- range $key, $path := .Values.fileSecrets }}
+          - name: file-secret
+            mountPath: {{ $path }}
+            subPath: {{ $key }}
+            readOnly: true
+          {{- end }}
           {{- end }}
       volumes:
       {{- with .Values.volumes }}

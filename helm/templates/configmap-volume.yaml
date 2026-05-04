@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "pathfinder.labels" . | nindent 4 }}
 data:
-  {{- range $key := .Values.fileConfigMaps }}
+  {{- range $key, $_ := .Values.fileConfigMaps }}
   {{ $key }}: |
     {{- $.Files.Get (printf "files/%s" $key) | nindent 4 }}
   {{- end }}
