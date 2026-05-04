@@ -86,7 +86,7 @@ spec:
           {{- end }}
           {{- if .Values.fileSecrets }}
             - name: file-secret
-              mountPath: {{ .Values.fileMountPath }}
+              mountPath: {{ .Values.fileMountPath }}/secret
               readOnly: true
           {{- end }}
       volumes:
