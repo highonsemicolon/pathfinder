@@ -2,12 +2,12 @@ apiVersion: v1
 entries:
   pathfinder:
   - apiVersion: v2
-    created: "2026-05-04T18:47:41.148752203Z"
+    created: "2026-05-04T19:10:53.057055634Z"
     description: A Helm chart for Kubernetes
-    digest: 1921a61fb48a5a79cee15e227c15fbda07ffaf34e241f48cdfaff05082286b1f
+    digest: 94ebe111eb87ef78ddfd9193413a633e3e50a5388d56e993da0b562095dccbf7
     name: pathfinder
     type: application
     urls:
     - https://highonsemicolon.github.io/pathfinder/pathfinder-0.1.0.tgz
     version: 0.1.0
-generated: "2026-05-04T18:47:41.148120003Z"
+generated: "2026-05-04T19:10:53.056390258Z"
