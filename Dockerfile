@@ -2,12 +2,13 @@ FROM golang:1.23.6 AS builder
 WORKDIR /app
 
 COPY go.mod go.sum ./
+ENV GOPROXY=direct
 RUN go mod download
 
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o main .
 
-FROM gcr.io/distroless/static:nonroot
+FROM alpine:3.20
 WORKDIR /app
 COPY --from=builder /app/main .
 CMD ["/app/main"]
