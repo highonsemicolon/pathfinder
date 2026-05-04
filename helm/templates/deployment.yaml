@@ -79,16 +79,16 @@ spec:
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- if .Values.fileConfigMaps }}
-          {{- range $key, $path := .Values.fileConfigMaps }}
+          {{- if .Values.volume.configMap }}
+          {{- range $key, $path := .Values.volume.configMap }}
           - name: file-config
             mountPath: {{ $path }}
             subPath: {{ $key }}
             readOnly: true
           {{- end }}
           {{- end }}
-          {{- if .Values.fileSecrets }}
-          {{- range $key, $path := .Values.fileSecrets }}
+          {{- if .Values.volume.secret }}
+          {{- range $key, $path := .Values.volume.secret }}
           - name: file-secret
             mountPath: {{ $path }}
             subPath: {{ $key }}
@@ -99,15 +99,17 @@ spec:
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.fileConfigMaps }}
+      {{- if .Values.volume.configMap }}
         - name: file-config
           configMap:
             name: {{ include "pathfinder.fullname" . }}-volume
+            optional: false
       {{- end }}
-      {{- if .Values.fileSecrets }}
+      {{- if .Values.volume.secret }}
         - name: file-secret
           secret:
             secretName: {{ include "pathfinder.fullname" . }}-volume
+            optional: false
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

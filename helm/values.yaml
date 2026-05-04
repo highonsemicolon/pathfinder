@@ -77,11 +77,13 @@ env:
   configMap:
 
 # This is for setting up the file mounts for the ConfigMap, Secret.
-fileConfigMaps:
-  # app.properties: /etc/config/app.properties
-  # config.yaml: /etc/config/config.yaml
-fileSecrets:
-  # credentials.json: /etc/config/credentials.json
+volume:
+  secret:
+    # credentials.json: /etc/config/credentialsss.json
+  configMap:
+    # app.properties: /etc/confibg/app.properties
+    # config.yaml: /etc/config/consfig.yaml
+
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
