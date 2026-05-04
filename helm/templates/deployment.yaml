@@ -40,6 +40,18 @@ spec:
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.commands }}
+          command:
+            {{- range . }}
+            - {{ . }}
+            {{- end }}
+          {{- end }}
+          {{- with .Values.args }}
+          args:
+            {{- range . }}
+            - {{ . }}
+            {{- end }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
