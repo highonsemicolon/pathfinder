@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: platform-root
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - clusters:
+              selector:
+                matchLabels:
+                  application: my-app
+          - git:
+              repoURL: https://github.com/highonsemicolon/pathfinder
+              revision: main
+              directories:
+                - path: argocd/applications/my-app/*/*
+  template:
+    metadata:
+      name: '{{metadata.labels.application}}-{{path[4]}}-{{metadata.labels.environment}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/highonsemicolon/pathfinder
+        targetRevision: main
+        path: helm
+        helm:
+          valueFiles:
+            - /{{path}}/{{metadata.labels.environment}}-values.yaml
+      destination:
+        server: '{{server}}'
+        namespace: '{{path[3]}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
