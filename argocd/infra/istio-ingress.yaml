@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: istio-gateway-root
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1" 
+spec:
+  generators:
+    - clusters:
+        selector:
+          matchLabels:
+            application: my-app
+  template:
+    metadata:
+      name: 'my-app-istio-ingress-{{metadata.labels.environment}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://istio-release.storage.googleapis.com/charts
+        chart: gateway
+        targetRevision: 1.21.0
+        helm:
+          valueFiles:
+            - $values/argocd/applications/my-app/istio-ingress/{{metadata.labels.environment}}-values.yaml
+      sources:
+        - repoURL: https://istio-release.storage.googleapis.com/charts
+          chart: gateway
+          targetRevision: 1.21.0
+          helm:
+            valueFiles:
+              - $values/argocd/applications/my-app/istio-ingress/{{metadata.labels.environment}}-values.yaml
+        - repoURL: https://github.com/highonsemicolon/pathfinder
+          targetRevision: main
+          ref: values
+      destination:
+        server: '{{server}}'
+        namespace: istio-system
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

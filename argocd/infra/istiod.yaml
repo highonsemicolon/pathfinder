@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: istiod
+  namespace: argocd
+spec:
+  generators:
+    - clusters:
+        selector:
+          matchLabels:
+            application: my-app
+  template:
+    metadata:
+      name: 'my-app-istiod-{{metadata.labels.environment}}'
+      annotations:
+        argocd.argoproj.io/sync-wave: "-1"
+    spec:
+      project: default
+      source:
+        repoURL: https://istio-release.storage.googleapis.com/charts
+        chart: istiod
+        targetRevision: 1.21.0
+        helm:
+          values: |
+            pilot:
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 128Mi
+      destination:
+        server: '{{server}}'
+        namespace: istio-system
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
