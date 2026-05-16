@@ -1,11 +1,9 @@
-service:
-  type: ClusterIP
-  annotations:
-    # networking.gke.io/load-balancer-type: "Internal"
-
-replicaCount: 1
-
-resources:
-  requests:
-    cpu: 100m
-    memory: 128Mi
+gateway:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  service:
+    type: ClusterIP
+    annotations: {}
