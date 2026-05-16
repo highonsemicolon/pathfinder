@@ -15,10 +15,10 @@ spec:
               repoURL: https://github.com/highonsemicolon/pathfinder
               revision: main
               directories:
-                - path: argocd/applications/my-app/*/*
+                - path: argocd/applications/my-app/services/*/*
   template:
     metadata:
-      name: '{{metadata.labels.application}}-{{path[4]}}-{{metadata.labels.environment}}'
+      name: '{{metadata.labels.application}}-{{path[5]}}-{{metadata.labels.environment}}'
     spec:
       project: default
       source:
