@@ -1,6 +1,6 @@
 replicaCount: 2
 service:
-  type: ClusterIP
+  type: NodePort
 
 podAnnotations:
   sidecar.istio.io/inject: "false"
