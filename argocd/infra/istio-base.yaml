@@ -20,6 +20,12 @@ spec:
         repoURL: https://istio-release.storage.googleapis.com/charts
         chart: base
         targetRevision: 1.30.0
+      ignoreDifferences:
+        - group: "admissionregistration.k8s.io"
+          kind: "ValidatingWebhookConfiguration"
+          jqPathExpressions:
+            - '.webhooks[].clientConfig.caBundle'
+            - '.webhooks[].failurePolicy'
       destination:
         server: '{{server}}'
         namespace: istio-system
@@ -29,3 +35,4 @@ spec:
           selfHeal: true
         syncOptions:
           - CreateNamespace=true
+          - RespectIgnoreDifferences=true
