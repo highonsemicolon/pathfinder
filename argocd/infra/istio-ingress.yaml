@@ -16,13 +16,6 @@ spec:
       name: 'my-app-istio-ingress-{{metadata.labels.environment}}'
     spec:
       project: default
-      source:
-        repoURL: https://istio-release.storage.googleapis.com/charts
-        chart: gateway
-        targetRevision: 1.30.0
-        helm:
-          valueFiles:
-            - $values/argocd/applications/my-app/istio-ingress/{{metadata.labels.environment}}-values.yaml
       sources:
         - repoURL: https://istio-release.storage.googleapis.com/charts
           chart: gateway
