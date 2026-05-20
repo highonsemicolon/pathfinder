@@ -1,3 +1,8 @@
 replicaCount: 2
 service:
   type: ClusterIP
+
+image:
+  repository: docker.io/istio/proxyv2
+  tag: "1.30.0"
+  pullPolicy: IfNotPresent
