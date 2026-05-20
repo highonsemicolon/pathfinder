@@ -3,8 +3,6 @@ kind: ApplicationSet
 metadata:
   name: istio-gateway-root
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1" 
 spec:
   generators:
     - clusters:
@@ -14,6 +12,8 @@ spec:
   template:
     metadata:
       name: 'my-app-istio-ingress-{{metadata.labels.environment}}'
+      annotations:
+        argocd.argoproj.io/sync-wave: "-1"
     spec:
       project: default
       sources:

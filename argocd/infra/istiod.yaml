@@ -13,7 +13,7 @@ spec:
     metadata:
       name: 'my-app-istiod-{{metadata.labels.environment}}'
       annotations:
-        argocd.argoproj.io/sync-wave: "-1"
+        argocd.argoproj.io/sync-wave: "-2"
     spec:
       project: default
       source:
@@ -27,6 +27,9 @@ spec:
                 requests:
                   cpu: 100m
                   memory: 128Mi
+            global:
+              proxy:
+                autoInject: disabled
       destination:
         server: '{{server}}'
         namespace: istio-system
