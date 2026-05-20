@@ -19,7 +19,7 @@ spec:
       source:
         repoURL: https://istio-release.storage.googleapis.com/charts
         chart: base
-        targetRevision: 1.21.0
+        targetRevision: 1.30.0
       destination:
         server: '{{server}}'
         namespace: istio-system
