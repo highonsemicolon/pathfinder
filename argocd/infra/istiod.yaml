@@ -27,9 +27,6 @@ spec:
                 requests:
                   cpu: 100m
                   memory: 128Mi
-            global:
-              proxy:
-                autoInject: disabled
       destination:
         server: '{{server}}'
         namespace: istio-system
@@ -46,3 +43,4 @@ spec:
           selfHeal: true
         syncOptions:
           - CreateNamespace=true
+          - RespectIgnoreDifferences=true
