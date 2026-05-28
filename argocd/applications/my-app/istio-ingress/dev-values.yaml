@@ -1,5 +1,5 @@
 service:
   type: ClusterIP 
 
-podAnnotations:
-  sidecar.istio.io/inject: "false"
+# podAnnotations:
+#   sidecar.istio.io/inject: "false"
