@@ -11,7 +11,7 @@ spec:
             application: my-app
   template:
     metadata:
-      name: 'my-app-istio-root-{{metadata.labels.environment}}'
+      name: '{{metadata.labels.application}}-root-{{metadata.labels.environment}}'
       annotations:
         argocd.argoproj.io/sync-wave: "-5"
     spec:
@@ -19,7 +19,7 @@ spec:
       source:
         repoURL: https://github.com/highonsemicolon/pathfinder
         targetRevision: main
-        path: argocd/infra
+        path: argocd/my-app-infra
       destination:
         server: '{{server}}'
         namespace: argocd
