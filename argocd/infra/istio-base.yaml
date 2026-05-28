@@ -2,6 +2,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: istio-base
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
   namespace: argocd
 spec:
   generators:
@@ -12,8 +14,6 @@ spec:
   template:
     metadata:
       name: 'my-app-istio-base-{{metadata.labels.environment}}'
-      annotations:
-        argocd.argoproj.io/sync-wave: "-3"
     spec:
       project: default
       source:
