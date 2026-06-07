@@ -57,12 +57,16 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           envFrom:
-            - configMapRef:
-                name: {{ include "pathfinder.fullname" . }}-env
-                optional: true
-            - secretRef:
-                name: {{ include "pathfinder.fullname" . }}-env
-                optional: true
+          {{- range .Values.envFrom.configMap }}
+          - configMapRef:
+              name: {{ . }}
+              optional: true
+          {{- end }}
+          {{- range .Values.envFrom.secret }}
+          - secretRef:
+              name: {{ . }}
+              optional: true
+          {{- end }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
