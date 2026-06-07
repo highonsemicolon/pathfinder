@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: mounts
+  name: config
   namespace: argocd
 spec:
   generators:
@@ -15,10 +15,10 @@ spec:
               repoURL: https://github.com/highonsemicolon/pathfinder
               revision: main
               directories:
-                - path: argocd/applications/my-app/mounts/*
+                - path: argocd/applications/my-app/config/*
   template:
     metadata:
-      name: '{{metadata.labels.application}}-mounts-{{path[4]}}-{{metadata.labels.environment}}'
+      name: '{{metadata.labels.application}}-config-{{path[4]}}-{{metadata.labels.environment}}'
     spec:
       project: default
       source:
