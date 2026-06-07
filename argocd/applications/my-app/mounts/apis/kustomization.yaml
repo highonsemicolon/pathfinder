@@ -10,7 +10,7 @@ configMapGenerator:
 
 secretGenerator:
   - name: app-secret
-    envs:
+    files:
       - secret.env
 
 generatorOptions:
