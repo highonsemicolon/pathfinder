@@ -14,4 +14,4 @@ secretGenerator:
       - secret.env
 
 generatorOptions:
-  disableNameSuffixHash: false
+  disableNameSuffixHash: true
