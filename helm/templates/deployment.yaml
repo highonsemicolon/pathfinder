@@ -60,12 +60,12 @@ spec:
           {{- range .Values.envFrom.configMap }}
           - configMapRef:
               name: {{ . }}
-              optional: true
+              optional: false
           {{- end }}
           {{- range .Values.envFrom.secret }}
           - secretRef:
               name: {{ . }}
-              optional: true
+              optional: false
           {{- end }}
           {{- with .Values.livenessProbe }}
           livenessProbe:

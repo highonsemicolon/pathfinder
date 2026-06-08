@@ -73,9 +73,9 @@ service:
 
 # This is for setting up the environment variables from a ConfigMap, Secret.
 envFrom:
-  secret:
+  secret: []
     # - app-secret
-  configMap:
+  configMap: []
     # - app-config
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
