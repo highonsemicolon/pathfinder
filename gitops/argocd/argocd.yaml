@@ -9,21 +9,15 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
-
-  source:
-    repoURL: https://argoproj.github.io/argo-helm
-    chart: argo-cd
-    helm:
-      valueFiles:
-        - $values/gitops/argocd/values.yaml
   sources:
     - repoURL: https://argoproj.github.io/argo-helm
       chart: argo-cd
+      targetRevision: 10.1.1
       helm:
         valueFiles:
-          - $values/argocd/values.yaml
+          - $values/gitops/argocd/values.yaml
 
-    - repoURL: git@github.com:highonsemicolon/pathfinder.git
+    - repoURL: https://github.com/highonsemicolon/pathfinder.git
       targetRevision: main
       ref: values
 
