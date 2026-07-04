@@ -27,7 +27,7 @@ spec:
         path: helm
         helm:
           valueFiles:
-            - /{{path}}/{{metadata.labels.environment}}-values.yaml
+            - /{{path}}/values.yaml
       destination:
         server: '{{server}}'
         namespace: '{{path[5]}}'
