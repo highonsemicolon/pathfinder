@@ -19,7 +19,7 @@ spec:
                 - path: gitops/applications/my-app/{{metadata.labels.environment}}/configs/*
   template:
     metadata:
-      name: "my-app-configs-{{path[4]}}-{{metadata.labels.environment}}"
+      name: "my-app-{{path[4]}}-{{metadata.labels.environment}}"
     spec:
       project: default
       source:
