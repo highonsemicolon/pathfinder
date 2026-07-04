@@ -11,6 +11,8 @@ spec:
         selector:
           matchLabels:
             application: my-app
+            environment: dev
+
   template:
     metadata:
       name: 'my-app-istio-ingress-{{metadata.labels.environment}}'

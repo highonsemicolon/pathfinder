@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: istiod
+  name: my-app-istiod-dev
   annotations:
     argocd.argoproj.io/sync-wave: "-2"
   namespace: argocd
@@ -11,6 +11,8 @@ spec:
         selector:
           matchLabels:
             application: my-app
+            environment: dev
+
   template:
     metadata:
       name: 'my-app-istiod-{{metadata.labels.environment}}'

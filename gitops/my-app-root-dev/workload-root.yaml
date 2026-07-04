@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: workload-root
+  name: my-app-workload-root-dev
   namespace: argocd
 spec:
   generators:
@@ -11,6 +11,8 @@ spec:
               selector:
                 matchLabels:
                   application: my-app
+                  environment: dev
+
           - git:
               repoURL: https://github.com/highonsemicolon/pathfinder.git
               revision: main
