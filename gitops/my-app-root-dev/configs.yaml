@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/highonsemicolon/pathfinder.git
         revision: main
         directories:
-          - path: gitops/applications/my-app/configs/*
+          - path: gitops/applications/my-app/dev/configs/*
   template:
     metadata:
       name: 'my-app-configs-{{path[4]}}-{{metadata.labels.environment}}'
