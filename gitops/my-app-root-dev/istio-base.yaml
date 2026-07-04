@@ -14,7 +14,7 @@ spec:
             environment: dev
   template:
     metadata:
-      name: 'my-app-istio-base-{{metadata.labels.environment}}'
+      name: "my-app-istio-base-{{metadata.labels.environment}}"
     spec:
       project: default
       source:
@@ -25,10 +25,10 @@ spec:
         - group: "admissionregistration.k8s.io"
           kind: "ValidatingWebhookConfiguration"
           jqPathExpressions:
-            - '.webhooks[].clientConfig.caBundle'
-            - '.webhooks[].failurePolicy'
+            - ".webhooks[].clientConfig.caBundle"
+            - ".webhooks[].failurePolicy"
       destination:
-        server: '{{server}}'
+        server: "{{server}}"
         namespace: istio-system
       syncPolicy:
         automated:

@@ -25,4 +25,3 @@ spec:
                 wget -qO- http://httpbin.default.svc.cluster.local:8000/get;
                 sleep 1;
               done
-

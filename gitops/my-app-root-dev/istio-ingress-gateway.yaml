@@ -15,7 +15,7 @@ spec:
 
   template:
     metadata:
-      name: 'my-app-istio-ingress-{{metadata.labels.environment}}'
+      name: "my-app-istio-ingress-{{metadata.labels.environment}}"
     spec:
       project: default
       sources:
@@ -29,7 +29,7 @@ spec:
           targetRevision: main
           ref: values
       destination:
-        server: '{{server}}'
+        server: "{{server}}"
         namespace: istio-system
       syncPolicy:
         automated:

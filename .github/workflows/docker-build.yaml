@@ -5,11 +5,11 @@ on:
     branches:
       - main
     paths:
-      - '**.go'
-      - 'go.mod'
-      - 'go.sum'
-      - 'Dockerfile'
-      - '.github/workflows/docker-build.yaml'
+      - "**.go"
+      - "go.mod"
+      - "go.sum"
+      - "Dockerfile"
+      - ".github/workflows/docker-build.yaml"
 
 permissions:
   contents: read

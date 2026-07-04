@@ -7,9 +7,8 @@ meshConfig:
       #provider:
       # name: otel
   extensionProviders:
-  - name: otel
-    opentelemetry:
-      service: otel-collector.otel-system.svc.cluster.local
-      port: 4317
-      protocol: grpc
-
+    - name: otel
+      opentelemetry:
+        service: otel-collector.otel-system.svc.cluster.local
+        port: 4317
+        protocol: grpc
