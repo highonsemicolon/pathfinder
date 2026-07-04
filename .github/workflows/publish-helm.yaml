@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "helm/**"
+      - "base-chart/**"
       - ".github/workflows/publish-helm.yaml"
       - "README.md"
 
@@ -28,12 +28,12 @@ jobs:
           version: v3.14.0
 
       - name: Lint chart
-        run: helm lint helm
+        run: helm lint base-chart
 
       - name: Package Helm chart
         run: |
           mkdir -p .deploy
-          helm package helm --destination .deploy
+          helm package base-chart --destination .deploy
 
       - name: Generate index.yaml
         run: |
