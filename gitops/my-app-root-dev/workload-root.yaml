@@ -15,7 +15,7 @@ spec:
               repoURL: https://github.com/highonsemicolon/pathfinder.git
               revision: main
               directories:
-                - path: gitops/applications/my-app/services/*/*
+                - path: gitops/applications/my-app/{{metadata.labels.environment}}/services/*/*
   template:
     metadata:
       name: '{{metadata.labels.application}}-{{path[5]}}-{{metadata.labels.environment}}'

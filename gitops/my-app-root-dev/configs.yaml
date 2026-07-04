@@ -5,20 +5,14 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    - matrix:
-        generators:
-          - clusters:
-              selector:
-                matchLabels:
-                  application: my-app
-          - git:
-              repoURL: https://github.com/highonsemicolon/pathfinder.git
-              revision: main
-              directories:
-                - path: gitops/applications/my-app/configs/*
+    - git:
+        repoURL: https://github.com/highonsemicolon/pathfinder.git
+        revision: main
+        directories:
+          - path: gitops/applications/my-app/configs/*
   template:
     metadata:
-      name: '{{metadata.labels.application}}-configs-{{path[4]}}-{{metadata.labels.environment}}'
+      name: 'my-app-configs-{{path[4]}}-{{metadata.labels.environment}}'
     spec:
       project: default
       source:
