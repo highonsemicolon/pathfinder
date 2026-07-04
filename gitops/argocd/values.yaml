@@ -1,0 +1,8 @@
+controller:
+  replicas: 2
+
+repoServer:
+  replicas: 2
+
+server:
+  replicas: 2
