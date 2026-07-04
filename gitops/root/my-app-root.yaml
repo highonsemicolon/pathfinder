@@ -21,7 +21,7 @@ spec:
       source:
         repoURL: https://github.com/highonsemicolon/pathfinder.git
         targetRevision: main
-        path: gitops/my-app-infra
+        path: gitops/my-app-root
       destination:
         server: '{{server}}'
         namespace: argocd
