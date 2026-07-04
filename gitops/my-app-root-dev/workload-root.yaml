@@ -18,7 +18,7 @@ spec:
                 - path: gitops/applications/my-app/{{metadata.labels.environment}}/services/*/*
   template:
     metadata:
-      name: '{{metadata.labels.application}}-{{path[5]}}-{{metadata.labels.environment}}'
+      name: '{{metadata.labels.application}}-{{path[6]}}-{{metadata.labels.environment}}'
     spec:
       project: default
       source:
@@ -30,7 +30,7 @@ spec:
             - /{{path}}/{{metadata.labels.environment}}-values.yaml
       destination:
         server: '{{server}}'
-        namespace: '{{path[4]}}'
+        namespace: '{{path[5]}}'
       syncPolicy:
         automated:
           prune: true
