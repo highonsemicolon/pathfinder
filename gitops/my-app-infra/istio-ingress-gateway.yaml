@@ -23,7 +23,7 @@ spec:
           helm:
             valueFiles:
               - $values/gitops/applications/my-app/istio-ingress/{{metadata.labels.environment}}-values.yaml
-        - repoURL: https://github.com/highonsemicolon/pathfinder
+        - repoURL: https://github.com/highonsemicolon/pathfinder.git
           targetRevision: main
           ref: values
       destination:

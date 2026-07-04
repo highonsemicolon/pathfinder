@@ -12,7 +12,7 @@ spec:
                 matchLabels:
                   application: my-app
           - git:
-              repoURL: https://github.com/highonsemicolon/pathfinder
+              repoURL: https://github.com/highonsemicolon/pathfinder.git
               revision: main
               directories:
                 - path: gitops/applications/my-app/configs/*
@@ -22,7 +22,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/highonsemicolon/pathfinder
+        repoURL: https://github.com/highonsemicolon/pathfinder.git
         targetRevision: main
         path: '{{path}}'
       destination:

@@ -19,7 +19,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/highonsemicolon/pathfinder
+        repoURL: https://github.com/highonsemicolon/pathfinder.git
         targetRevision: main
         path: gitops/my-app-infra
       destination:
