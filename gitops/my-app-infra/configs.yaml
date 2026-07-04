@@ -15,7 +15,7 @@ spec:
               repoURL: https://github.com/highonsemicolon/pathfinder
               revision: main
               directories:
-                - path: argocd/applications/my-app/configs/*
+                - path: gitops/applications/my-app/configs/*
   template:
     metadata:
       name: '{{metadata.labels.application}}-configs-{{path[4]}}-{{metadata.labels.environment}}'
