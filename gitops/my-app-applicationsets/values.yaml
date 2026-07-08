@@ -59,7 +59,7 @@ resources:
     sources:
       - repoURL: https://github.com/highonsemicolon/pathfinder.git
         targetRevision: main
-        path: gitops/applications/my-app/{{metadata.labels.environment}}/configs/apis
+        path: gitops/applications/my-app/{{metadata.labels.environment}}-configs/apis
 
   - name: pathfinder
     namespace: apis
