@@ -52,3 +52,11 @@ applications:
     - repoURL: https://github.com/highonsemicolon/pathfinder.git
       targetRevision: main
       ref: values
+  
+  - name: apis-config
+    namespace: apis
+    wave: 0
+    sources:
+      - repoURL: https://github.com/highonsemicolon/pathfinder.git
+        targetRevision: main
+        path: gitops/applications/my-app/{{metadata.labels.environment}}/configs/apis

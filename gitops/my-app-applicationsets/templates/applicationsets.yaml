@@ -8,7 +8,7 @@ metadata:
   namespace: argocd
 
   annotations:
-    argocd.argoproj.io/sync-wave: "{{ .wave }}"
+    argocd.argoproj.io/sync-wave: "{{ .wave | default 0 }}"
 
 spec:
 
@@ -29,7 +29,7 @@ spec:
       project: {{ $.Values.project }}
 
       sources:
-      {{- toYaml .sources | nindent 6 }}
+      {{- toYaml .sources | nindent 8 }}
 
       destination:
         server: "{{`{{server}}`}}"
