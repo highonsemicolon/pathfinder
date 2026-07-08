@@ -1,0 +1,53 @@
+{{- range .Values.applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+
+metadata:
+  name: my-app-{{ .name }}
+  namespace: argocd
+
+  annotations:
+    argocd.argoproj.io/sync-wave: "{{ .wave }}"
+
+spec:
+
+  generators:
+    - clusters:
+        selector:
+          matchLabels:
+            application: {{ $.Values.clusterSelector.application }}
+            environment: {{ $.Values.clusterSelector.environment }}
+
+  template:
+
+    metadata:
+      name: my-app-{{ .name }}-{{`{{metadata.labels.environment}}`}}
+
+    spec:
+
+      project: {{ $.Values.project }}
+
+      sources:
+      {{- toYaml .sources | nindent 6 }}
+
+      destination:
+        server: "{{`{{server}}`}}"
+        namespace: {{ .namespace }}
+
+      {{- with .ignoreDifferences }}
+      ignoreDifferences:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+      syncPolicy:
+        automated:
+          prune: {{ $.Values.syncPolicy.prune }}
+          selfHeal: {{ $.Values.syncPolicy.selfHeal }}
+
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          - RespectIgnoreDifferences=true
+
+{{- end }}

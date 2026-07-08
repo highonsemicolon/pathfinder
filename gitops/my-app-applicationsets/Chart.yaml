@@ -1,0 +1,4 @@
+apiVersion: v2
+name: my-app-applicationsets
+type: application
+version: 0.1.0

@@ -12,7 +12,10 @@ spec:
   source:
     repoURL: https://github.com/highonsemicolon/pathfinder.git
     targetRevision: main
-    path: gitops/my-app-root-dev
+    path: gitops/my-app-applicationsets
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
