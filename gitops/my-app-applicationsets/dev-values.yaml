@@ -1,0 +1,14 @@
+resources:
+  - name: pathfinder
+    namespace: apissss
+    wave: 0
+    sources:
+      - repoURL: https://github.com/highonsemicolon/pathfinder.git
+        targetRevision: main
+        path: pathfinder
+        helm:
+          valueFiles:
+            - $values/gitops/applications/my-app/services/apis/pathfinder/{{metadata.labels.environment}}-values.yaml
+      - repoURL: https://github.com/highonsemicolon/pathfinder.git
+        targetRevision: main
+        ref: values
