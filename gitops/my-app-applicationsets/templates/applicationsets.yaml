@@ -7,9 +7,6 @@ metadata:
   name: {{$.Values.clusterSelector.application}}-{{ .name }}-{{ $.Values.clusterSelector.environment}}
   namespace: argocd
 
-  annotations:
-    argocd.argoproj.io/sync-wave: "{{ .wave | default 0 }}"
-
 spec:
 
   generators:
@@ -23,6 +20,8 @@ spec:
 
     metadata:
       name: my-app-{{ .name }}-{{`{{metadata.labels.environment}}`}}
+      annotations:
+        argocd.argoproj.io/sync-wave: "{{ .wave | default 0 }}"
 
     spec:
 
