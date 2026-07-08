@@ -8,7 +8,7 @@ syncPolicy:
   prune: true
   selfHeal: true
 
-applications:
+resources:
 
   - name: istio-base
     namespace: istio-system
