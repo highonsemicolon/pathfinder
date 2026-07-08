@@ -4,7 +4,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 
 metadata:
-  name: my-app-{{ .name }}-{{metadata.labels.environment}}
+  name: {{$.Values.clusterSelector.application}}-{{ .name }}-{{ $.Values.clusterSelector.environment}}
   namespace: argocd
 
   annotations:
