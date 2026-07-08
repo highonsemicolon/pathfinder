@@ -70,7 +70,7 @@ resources:
         path: pathfinder
         helm:
           valueFiles:
-            - $values/gitops/applications/my-app/{{metadata.labels.environment}}/services/apis/pathfinder/values.yaml
+            - $values/gitops/applications/my-app/services/apis/pathfinder/{{metadata.labels.environment}}-values.yaml
       - repoURL: https://github.com/highonsemicolon/pathfinder.git
         targetRevision: main
         ref: values
