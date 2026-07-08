@@ -48,7 +48,7 @@ resources:
       targetRevision: 1.30.0
       helm:
         valueFiles:
-          - $values/gitops/applications/my-app/{{metadata.labels.environment}}/istio-ingress/values.yaml
+          - $values/gitops/applications/my-app/istio-ingress/{{metadata.labels.environment}}-values.yaml
     - repoURL: https://github.com/highonsemicolon/pathfinder.git
       targetRevision: main
       ref: values
