@@ -55,7 +55,7 @@ applications:
   
   - name: apis-config
     namespace: apis
-    wave: 0
+    wave: -10
     sources:
       - repoURL: https://github.com/highonsemicolon/pathfinder.git
         targetRevision: main
