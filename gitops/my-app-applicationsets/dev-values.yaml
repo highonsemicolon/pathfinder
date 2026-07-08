@@ -1,6 +1,58 @@
 resources:
+
+  - name: istio-base
+    namespace: istio-system
+    wave: -3
+    sources:
+      - repoURL: https://istio-release.storage.googleapis.com/charts
+        chart: base
+        targetRevision: 1.30.0
+    ignoreDifferences:
+      - group: admissionregistration.k8s.io
+        jqPathExpressions:
+          - '.webhooks[].clientConfig.caBundle'
+          - '.webhooks[].failurePolicy'
+        kind: ValidatingWebhookConfiguration
+
+  - name: istiod
+    namespace: istio-system
+    wave: -2
+    sources:
+      - repoURL: https://istio-release.storage.googleapis.com/charts
+        chart: istiod
+        targetRevision: 1.30.0
+    ignoreDifferences:
+        - group: admissionregistration.k8s.io
+          jsonPointers:
+            - /webhooks/0/clientConfig/caBundle
+            - /webhooks/0/failurePolicy
+          kind: ValidatingWebhookConfiguration
+          name: istio-validator-istio-system
+
+  - name: istio-ingress-gateway
+    namespace: istio-system
+    wave: -1
+    sources:
+    - repoURL: https://istio-release.storage.googleapis.com/charts
+      chart: gateway
+      targetRevision: 1.30.0
+      helm:
+        valueFiles:
+          - $values/gitops/applications/my-app/istio-ingress/{{metadata.labels.environment}}-values.yaml
+    - repoURL: https://github.com/highonsemicolon/pathfinder.git
+      targetRevision: main
+      ref: values
+  
+  - name: apis-config
+    namespace: apis
+    wave: -10
+    sources:
+      - repoURL: https://github.com/highonsemicolon/pathfinder.git
+        targetRevision: main
+        path: gitops/applications/my-app/{{metadata.labels.environment}}-configs/apis
+
   - name: pathfinder
-    namespace: apissss
+    namespace: apis
     wave: 0
     sources:
       - repoURL: https://github.com/highonsemicolon/pathfinder.git
