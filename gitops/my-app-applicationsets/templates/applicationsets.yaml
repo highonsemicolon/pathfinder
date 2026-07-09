@@ -24,7 +24,7 @@ spec:
         argocd.argoproj.io/sync-wave: "{{ .wave | default 0 }}"
       labels:
         application: {{ $.Values.clusterSelector.application }}
-        environment: {{ $.Values.clusterSelector.environment}}
+        environment: {{ $.Values.clusterSelector.environment }}
 
     spec:
 
