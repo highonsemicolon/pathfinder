@@ -14,3 +14,6 @@ spec:
 
   hostname:
     strict: false
+  
+  ingress:
+    enabled: false
