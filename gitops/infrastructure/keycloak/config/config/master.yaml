@@ -10,5 +10,5 @@ identityProviders:
       discoveryUrl: https://adfs.company.com/adfs/.well-known/openid-configuration
       clientId: "123456"
       clientSecret: "123456"
-      useJwksUrl: "true"
-      validateSignature: "true"
+      useJwksUrl: "false"
+      validateSignature: "false"
