@@ -4,20 +4,15 @@ metadata:
   name: keycloak-operator
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "10"
 
 spec:
   project: default
 
   source:
-    repoURL: https://github.com/keycloak/keycloak-k8s-resources.git
-    targetRevision: 26.6.4
-    path: kubernetes
-    directory:
-      include: |
-        keycloaks.k8s.keycloak.org-v1.yml
-        keycloakrealmimports.k8s.keycloak.org-v1.yml
-        kubernetes.yml
+    repoURL: https://github.com/highonsemicolon/pathfinder.git
+    targetRevision: main
+    path: gitops/infrastructure/keycloak/operator
 
   destination:
     server: https://kubernetes.default.svc
