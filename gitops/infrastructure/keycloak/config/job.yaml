@@ -35,7 +35,7 @@ spec:
                   key: password
 
             - name: IMPORT_FILES_LOCATIONS
-              value: /config
+              value: /config/*.yaml
 
             - name: IMPORT_VAR_SUBSTITUTION_ENABLED
               value: "true"
