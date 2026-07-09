@@ -1,0 +1,50 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: keycloak-config
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  backoffLimit: 5
+
+  template:
+    spec:
+      restartPolicy: Never
+
+      containers:
+        - name: keycloak-config
+
+          image: adorsys/keycloak-config-cli:latest
+
+          env:
+            - name: KEYCLOAK_URL
+              value: http://keycloak-service:8080
+
+            - name: KEYCLOAK_USER
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-admin
+                  key: username
+
+            - name: KEYCLOAK_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-admin
+                  key: password
+
+            - name: IMPORT_FILES_LOCATIONS
+              value: /config
+
+            - name: IMPORT_VAR_SUBSTITUTION_ENABLED
+              value: "true"
+
+          volumeMounts:
+            - name: config
+              mountPath: /config
+
+      volumes:
+        - name: config
+          configMap:
+            name: keycloak-config

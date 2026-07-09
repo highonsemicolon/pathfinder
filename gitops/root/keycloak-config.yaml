@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keycloak-config
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "30"
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/highonsemicolon/pathfinder.git
+    targetRevision: main
+    path: gitops/infrastructure/keycloak/config
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: keycloak
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
