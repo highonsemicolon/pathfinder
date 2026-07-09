@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/highonsemicolon/pathfinder.git
     targetRevision: main
-    path: gitops/infrastructure/keycloak/configs
+    path: gitops/infrastructure/keycloak/config
 
   destination:
     server: https://kubernetes.default.svc
