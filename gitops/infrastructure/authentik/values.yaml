@@ -1,0 +1,8 @@
+authentik:
+  secret_key: ""
+
+  error_reporting:
+    enabled: false
+
+postgresql:
+  enabled: true
