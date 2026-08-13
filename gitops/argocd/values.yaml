@@ -6,3 +6,7 @@ repoServer:
 
 server:
   replicas: 2
+
+configs:
+  secret:
+    argocdServerAdminPassword: '$2b$12$sBPNBVwinfkJJTkA58vcqe9GmEmVFar16r4JH5SxwLVS00LP2iGJG' # admin
