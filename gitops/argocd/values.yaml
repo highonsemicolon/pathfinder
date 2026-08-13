@@ -8,5 +8,7 @@ server:
   replicas: 2
 
 configs:
+  cm:
+    kustomize.buildOptions: --enable-helm
   secret:
     argocdServerAdminPassword: '$2b$12$sBPNBVwinfkJJTkA58vcqe9GmEmVFar16r4JH5SxwLVS00LP2iGJG' # admin
