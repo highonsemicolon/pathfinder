@@ -1,5 +1,5 @@
 authentik:
-  secret_key: ""
+  secret_key: "f2IEP6FTBYD+uMJdR2q5qx1IwjoXpISOGDQYwau0Q/IzSoeeZuE9/OJ5/vljgHi8PDpbEx+5ZngDdDTy"
 
   error_reporting:
     enabled: false

@@ -15,3 +15,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 ```bash
 python3 -c "import bcrypt; print(bcrypt.hashpw(b'admin', bcrypt.gensalt()).decode())"
 ```
+
+```bash
+openssl rand -base64 60 | tr -d '\n'
+```
