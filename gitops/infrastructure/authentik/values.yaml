@@ -4,5 +4,32 @@ authentik:
   error_reporting:
     enabled: false
 
+  postgresql:
+    password: "file:///postgres-creds/password"
+
 postgresql:
   enabled: true
+  auth:
+    existingSecret: authentik-postgres
+
+server:
+  volumes:
+    - name: postgres-creds
+      secret:
+        secretName: authentik-postgres
+
+  volumeMounts:
+    - name: postgres-creds
+      mountPath: /postgres-creds
+      readOnly: true
+
+worker:
+  volumes:
+    - name: postgres-creds
+      secret:
+        secretName: authentik-postgres
+
+  volumeMounts:
+    - name: postgres-creds
+      mountPath: /postgres-creds
+      readOnly: true
