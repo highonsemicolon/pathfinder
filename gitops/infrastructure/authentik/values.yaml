@@ -5,12 +5,12 @@ authentik:
     enabled: false
 
   postgresql:
-    password: "file:///postgres-creds/password"
+    password: admin
 
 postgresql:
   enabled: true
   auth:
-    existingSecret: authentik-postgres
+    password: admin
 
 server:
   volumes:
